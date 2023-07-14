@@ -10,3 +10,8 @@ int solution(int num1, int num2)
     (int) answer;
     return answer;
 }
+
+int main(void)
+{
+    return 0;
+}
