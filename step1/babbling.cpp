@@ -5,8 +5,6 @@ using namespace std;
 
 int BabDel(string str)
 {
-    int count = 0;
-
     while(1)
     {
         if (str.find("aya") != str.npos)
