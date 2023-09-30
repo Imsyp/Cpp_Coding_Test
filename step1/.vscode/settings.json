@@ -4,6 +4,7 @@
         "sstream": "cpp",
         "xlocale": "cpp",
         "vector": "cpp",
-        "xutility": "cpp"
+        "xutility": "cpp",
+        "algorithm": "cpp"
     }
 }
