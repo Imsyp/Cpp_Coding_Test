@@ -17,13 +17,11 @@ string solution(string my_string, string overwrite_string, int s)
     {
         answer += my_string[i];
     }
-    cout<<answer<<endl;
 
     for(int i=0; i<length; i++)
     {
         answer += overwrite_string[i];
     }
-    cout<<answer<<endl;
 
     for(int i=0; i<limit; i++)
     {
