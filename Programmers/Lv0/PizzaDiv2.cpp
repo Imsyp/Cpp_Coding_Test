@@ -7,14 +7,14 @@ using namespace std;
 
 int solution(int n) 
 {
-    int pizza = 6;
+    int pizza;
     int i =1;
 
     while(true)
     {
-        pizza *= i;
+        pizza = 6 * i;
 
-        if(pizza%n ==0) break;
+        if(pizza%n == 0 && i*6 >= n) break;
 
         i++;
     }
@@ -24,7 +24,7 @@ int solution(int n)
 
 int main(void)
 {
-    cout << solution(0) <<endl;
+    cout << solution(100) <<endl;
 
     return 0;
 }
