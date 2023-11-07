@@ -5,6 +5,7 @@
 using namespace std;
 
 int solution(int balls, int share) {
+    //long double 이외 자료형은 메모리 초과
     long double answer = 0;
     long double bFac = 1;
     long double sFac = 1;
