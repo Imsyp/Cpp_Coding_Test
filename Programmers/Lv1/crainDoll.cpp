@@ -16,13 +16,13 @@ int solution(vector<vector<int>> board, vector<int> moves) {
             if(board[j][i] == 0) {
                 continue;
             }
-            tmpStack.push(board[j][i]);
+            tmpStack.push(board[j][i]); //가로인지 세로인지 확인하자,,, 너무 헷갈리게 냈더라
         }
         gameBoard.push_back(tmpStack);
     }
 
     for(int i = 0; i < moves.size(); i++) {
-        stack<int>& stackNow = gameBoard[moves[i] - 1];
+        stack<int>& stackNow = gameBoard[moves[i] - 1]; //참조형으로 선언하지 않으면 복사만 되어 아래에서 pop이 적용되지 않음!!!
 
         //현재 크레인 라인이 비어있으면 다음 moves로 스킵
         if(stackNow.empty()) {
