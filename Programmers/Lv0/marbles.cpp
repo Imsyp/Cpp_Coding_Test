@@ -1,13 +1,14 @@
 #include <string>
 #include <vector>
+#include <iostream>
 
 using namespace std;
 
 int solution(int balls, int share) {
-    int answer = 0;
-    int bFac = 1;
-    int sFac = 1;
-    int bsFac = 1;
+    long double answer = 0;
+    long double bFac = 1;
+    long double sFac = 1;
+    long double bsFac = 1;
 
     for(int i = 1; i <= balls; i++) {
         bFac *= i; 
