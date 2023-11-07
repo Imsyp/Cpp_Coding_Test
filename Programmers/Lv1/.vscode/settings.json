@@ -5,6 +5,7 @@
         "xlocale": "cpp",
         "vector": "cpp",
         "xutility": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "stack": "cpp"
     }
 }
