@@ -34,14 +34,14 @@ int main(void) {
     cin >> N;
 
     vector<treeNode> tree;
-    vector<vector<int>> inputs;
+    vector<stack<int>> inputs;
 
     //1~N까지의 tree와 input 생성, 0부분은 무시
     for(int i = 0; i <= N; i++) {
         treeNode newNode;
         tree.push_back(newNode);
 
-        vector<int> input;
+        stack<int> input;
         inputs.push_back(input);
     }
 
@@ -53,8 +53,8 @@ int main(void) {
         int num1, num2;
         cin >> num1 >> num2;
 
-        inputs[num1].push_back(num2);
-        inputs[num2].push_back(num1);
+        inputs[num1].push(num2);
+        inputs[num2].push(num1);
     } 
 
     stack<int> kStack;
@@ -62,22 +62,24 @@ int main(void) {
     kStack.push(1); 
     while(!kStack.empty()) { 
         key = kStack.top(); 
-        cout<<kStack.top()<<endl;
-        for (int i = 0; i < inputs[key].size(); i++) {
+        while(!inputs[key].empty()) {
             //case1: 둘 중 하나가 부모 노드가 없는 경우 -> next key로 이동
             //case2: 둘 다 부모 노드가 있는 경우 -> 현재 key의 다음 요소로 진행
             //현재 key의 배열이 끝난 경우 -> 이전 key로 회귀
-            if (setTree(tree, key, inputs[key][i])) {
-                kStack.push(inputs[key][i]);
-                inputs[key].erase(inputs[key].begin() + i -  1);
-
+            if (setTree(tree, key, inputs[key].top())) {
+                kStack.push(inputs[key].top());
+                inputs[key].pop();
                 break; 
             }   
-            inputs[key].erase(inputs[key].begin() + i - 1);
 
-            if (i == inputs[key].size() -1) {
+            inputs[key].pop();
+
+            if (inputs[key].empty()) {
                 kStack.pop();  
             }
+        }
+        if(inputs[1].empty() && kStack.top() == 1) {
+            break;
         }
     }
 
