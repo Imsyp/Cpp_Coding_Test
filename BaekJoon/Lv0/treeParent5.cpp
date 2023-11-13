@@ -59,8 +59,8 @@ int main(void) {
     kStack.push(1); 
     while(!kStack.empty()) {  
         key = kStack.top(); 
-        if (inputs[key].empty()) {
-            kStack.pop();  
+        if (inputs[key].empty()) { 
+            kStack.pop();   
         }
         while(!inputs[key].empty()) { 
             //이미 탐색이 끝난 요소는 삭제
