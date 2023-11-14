@@ -1,55 +1,31 @@
 #include <iostream>
 #include <vector>
-#include <stack>
+#include <queue>
 
 using namespace std;
 
-int dfs(vector<vector<int>> friendShip, vector<bool> visited, int person, int f) {
-	visited[person] = true;
-	for (int i = 0; i < friendShip[person].size(); i++) {
-		int y = friendShip[person][i];
-		if (!visited[y]) // 방문하지 않았으면 즉 visited가 False일 때 not을 해주면 True가 되므로 아래 dfs 실행
-            answer++;
-            dfs(friendShip, visited, y, f); // 재귀적으로 방문
-	}
-}
+vector<int> makePL(vector<vector<int>> friendShip, int person) {
+    queue<int> posQ;
+    posQ.push(person);
 
-int shortestPath(vector<vector<int>> friendShip, int person, int f) {
-    int answer = 0;
-    int minAns = 1000;
+    int N = friendShip.size();
 
-    stack<int> posStack;
-    posStack.push(person);
-    while(!posStack.empty()) {
-        int curPos = posStack.top();
+    vector<int> pathLen(N, 0);
 
-        if (friendShip[curPos].empty()) { 
-            posStack.pop();   
-        }
-
-        //현재 위치에서 f와 일치하는 요소까지 탐색
-        //f와 일치하는 거 찾으면 이전 위치로 이동
-        //일치하지 않으면 그 다음 위치로
-        //스택이 빌 때까지
-        for(int i = 1; i <= friendShip[curPos].size(); i++) {
-            if(friendShip[curPos][i] == f) {
-                if(minAns > answer) {
-                    minAns = answer;
-                }
-            }
-
-            //해당 위치 탐색 끝났으면 이전 위치로
-            //이전 위치로 가면서 answer--
-            if(friendShip[curPos].empty()) {
-                posStack.pop();
-                answer--;
+    int curPos;
+    while(!posQ.empty()) {
+        curPos = posQ.front();
+        for(int i = 0; i < friendShip[curPos].size(); i++) {
+            //curPos의 주변 사람의 거리가 설정돼있지 않다면, 현재 사람 거리의 +1
+            if(pathLen[friendShip[curPos][i]] == 0) {
+                posQ.push(friendShip[curPos][i]);
+                pathLen[friendShip[curPos][i]] = pathLen[curPos] + 1;   
             }
         }
-        posStack.pop();
-        answer--;
+        posQ.pop();
     }
 
-    return answer;
+    return pathLen;
 }
 
 
@@ -77,11 +53,14 @@ int main(void) {
     int answer = 0;
     int minKB = 1000;
 
+    //makePL 함수는 친구 관계와 학생 번호를 input으로 받아, output으로 그 학생의 pathLen 배열 반환
     for(int i = N; i > 0; i--) {
         int kevinBacon = 0;
+        vector<int> pathLen;
+        pathLen = makePL(friendShip, i);
         for(int j = 1; j <= N; j++) {
             if(i != j) {
-                kevinBacon += shortestPath(friendShip, i, j);   //i부터 j로 가는 최단경로
+                kevinBacon += pathLen[j];
             }
         }
 
