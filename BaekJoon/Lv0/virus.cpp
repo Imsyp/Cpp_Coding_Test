@@ -1,47 +1,18 @@
 #include <iostream>
 #include <vector>
-#include <stack>
 
 using namespace std;
 
-int dfs(vector<stack<int>> relations) {
-    stack<int> pStack;
-    pStack.push(1);
+vector<bool> visited(100, false);
 
-    vector<bool> virus(relations.size(), false);
-
-    int curPos;
-    while(!pStack.empty()) {
-        curPos = pStack.top();
-        if (relations[curPos].empty()) { 
-            pStack.pop();   
-        }
-
-        while(relations[curPos].empty()) {
-            if(virus[relations[curPos].top()] == false) {
-                virus[relations[curPos].top()] = true;
-
-                pStack.push(relations[curPos].top());
-                relations[curPos].pop();
-                break;
-            }
-
-            relations[curPos].pop();
-        }
-
-        if(relations[1].empty() && pStack.top() == 1) {
-            break;
+void dfs(vector<vector<int>> &relations, int pos) {
+    for(int i = 0; i < relations[pos].size(); i++) {
+        if(!visited[relations[pos][i]]) {
+            visited[relations[pos][i]] = true;
+            dfs(relations, relations[pos][i]);
         }
     }
-
-    int answer = 0;
-    for(int i = 2; i <= virus.size(); i++) {
-        if(virus[i] == true) {
-            answer++;
-        }
-    }
-
-    return answer;
+    return ;
 }
 
 
@@ -49,27 +20,34 @@ int main(void) {
     int N;
     cin >> N;
 
-    vector<stack<int>> relations;
-
-    for(int i = 0; i < N; i++) {
-        stack<int> relation;
-        relations.push_back(relation);
-    }
+    vector<int> relation;
+    vector<vector<int>> relations(N, relation);
 
     int M;
     cin >> M;
 
-    for(int i = 0; i < M; i ++) {
+    while(M--) {
         int com1, com2;
         cin >> com1 >> com2;
 
-        relations[com1].push(com2);
-        relations[com2].push(com1);
+        com1--;
+        com2--;
+
+        relations[com1].push_back(com2);
+        relations[com2].push_back(com1);
     }
 
-    cout<<endl;
+    visited[0] = true;
+    dfs(relations, 0);
 
-    cout << dfs(relations) << endl;
+    int answer = 0;
+    for(int i = 1; i < N; i++) {
+        if(visited[i] == true) {
+            answer++;
+        }
+    }
+
+    cout << answer << endl;
     
     return 0;
 }
