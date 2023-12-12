@@ -10,10 +10,10 @@ def Sigma(n):
 def isEven(m):
     numOfEven = 0
     for i in range(1, m + 1):
-        if(Sigma(i) % 2 == 0):
+        if(Sigma(i) % 2 != 0):
             numOfEven += 1
     return numOfEven
 
 m = int(input())
 
-print(isEven(m))
+isEven(m)
