@@ -13,6 +13,7 @@
         "initializer_list": "cpp",
         "ranges": "cpp",
         "span": "cpp",
-        "xtree": "cpp"
+        "xtree": "cpp",
+        "numeric": "cpp"
     }
 }
