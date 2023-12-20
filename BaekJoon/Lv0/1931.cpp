@@ -20,19 +20,29 @@ int main(void) {
         times.push_back(time);
     }
 
-    while(!times.empty()) {
-        sort(times.begin(), times.end());
-        vector<vector<int>> newTimes;
-        for(int i = 1; i < times.size(); i++) {
-            
-            if(times[0][0] <= times[i][1]) {
-                newTimes.push_back(times[i]);
-            }
+    //end time 기준 정렬 후 가장 이른 end time보다 start time이 늦은 요소만 times에 남긴다
+    // sort(times.begin(), times.end());
+    // while(!times.empty()) {
+    //     vector<vector<int>> newTimes;
+    //     for(int i = 1; i < times.size(); i++) {
+    //         if(times[0][0] <= times[i][1]) {
+    //             newTimes.push_back(times[i]);
+    //         }
+    //     }
+    //     times = newTimes;
+    //     sum++;
+    // }
+
+
+    sort(times.begin(), times.end());
+    int curEnd = 0;
+    //curEnd보다 start가 느리거나 같으면 sum++
+    for(int i = 0; i < times.size(); i++) {
+        if(curEnd <= times[i][1]) {
+            curEnd = times[i][0];
+            sum++;
         }
-        times = newTimes;
-        sum++;
-    }
-  
+    }  
     cout << sum << endl;
 
     return 0;
