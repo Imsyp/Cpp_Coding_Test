@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <numeric>
+#include <algorithm>
 
 using namespace std;
 
@@ -8,6 +9,7 @@ int main(void) {
     int N;
     cin >> N;
     
+    vector<int> arrLen(1000001, 0);
     vector<int> seq;
     while(N--) {
         int term;
@@ -16,14 +18,11 @@ int main(void) {
         seq.push_back(term);
     }
 
-    int result = 1;
-    int curPerm = seq[0];
-    for(int i = 1; i < seq.size(); i++) {
-        if(seq[i] == curPerm + 1) {
-            result++;
-            curPerm = seq[i];
-        }
+    for(int i = 0; i < seq.size(); i++) {
+        arrLen[seq[i]] = arrLen[seq[i] - 1] + 1;
     }
+
+    int result = *max_element(arrLen.begin(), arrLen.end());
 
     cout << result << endl;
 }
