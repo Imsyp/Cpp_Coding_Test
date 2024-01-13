@@ -51,7 +51,7 @@ int main(void) {
     }
 
     int answer = 0;
-    int minKB = 1000;
+    int minKB = 10000;
 
     //makePL 함수는 친구 관계와 학생 번호를 input으로 받아, output으로 그 학생의 pathLen 배열 반환
     for(int i = N; i > 0; i--) {
@@ -64,7 +64,7 @@ int main(void) {
             }
         }
 
-        if(minKB >= kevinBacon) {
+        if((minKB >= kevinBacon) && (i != 0)) {
             minKB = kevinBacon;
             answer = i; //가장 작은 케빈 베이컨을 가진 사람이 정답
         }
