@@ -53,6 +53,6 @@ int main(void) {
 
     cin >> N;
     cout << dp(N) << endl;
-
+    
     return 0;
 }
