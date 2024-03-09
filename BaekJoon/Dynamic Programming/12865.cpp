@@ -6,7 +6,7 @@ using namespace std;
 vector<vector<int>> prodList;
 
 //prodList를 받아, 배낭에 넣을 수 있는 물건들의 가치합 maximum을 반환
-int backpac(vector<vector<int>> prodList) {
+int backpack(vector<vector<int>> prodList) {
 
 }
 
