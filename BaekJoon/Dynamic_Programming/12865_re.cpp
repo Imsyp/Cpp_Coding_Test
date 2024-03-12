@@ -41,9 +41,7 @@ int dp(int index, int maxWeight) {
 }
 
 int main(void) {
-    for(int i = 0; i < 101; i++) {
-        fill(cache[i], cache[i] + 100001, -1);
-    }
+    memset(cache, -1, sizeof(cache));
 
     int prodNum, maxWeight;
     cin >> prodNum >> maxWeight;
