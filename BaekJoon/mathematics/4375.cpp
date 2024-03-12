@@ -17,6 +17,7 @@ int main(void) {
                 break;
             }
 
+            //모듈러 연산
             div = div * 10 + 1;
             answer++;
 
