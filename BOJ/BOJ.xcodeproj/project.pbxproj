@@ -28,6 +28,8 @@
 			membershipExceptions = (
 				DP/1463.cpp,
 				DP/9095.cpp,
+				DP/10844.cpp,
+				DP/11057.cpp,
 				DP/11726.cpp,
 				DP/11727.cpp,
 				IO/1924.cpp,
